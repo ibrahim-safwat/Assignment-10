@@ -4,6 +4,8 @@ import driverfactory.Driver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
+import java.time.Duration;
+
 public class OrderCompletePage {
     private Driver driver;
     private By backToProductButton = By.id("back-to-products");
@@ -27,8 +29,10 @@ public class OrderCompletePage {
 
     @Step("assert order complete page")
     public OrderCompletePage assertOrderCompletePage() {
-        System.out.println("Order completed");
+        System.out.println("Asserting order complete page");
+        driver.element().WaitForElementToBeVisible(backToProductButton, Duration.ofSeconds(10));
         driver.hardassertions().element(backToProductButton).IsDisplayed();
-        return new OrderCompletePage(driver);
+        return this;
     }
+
 }
