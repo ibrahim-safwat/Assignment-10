@@ -1,19 +1,14 @@
 package org.example.tests.checkout;
 
 import driverfactory.Driver;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import listeners.testng.TestNGListener;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.LoginPage;
 import utilities.PropertiesManager;
 import utilities.ScreenshotsManager;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-
+@Listeners(TestNGListener.class)
 public class checkoutandPurchase {
 
     String status;
@@ -40,7 +35,7 @@ public void Setup() {
 
     @BeforeMethod
     public void CreateLoginPage() {
-        System.out.println("Moving to the next page");
+        System.out.println("Moving to the inventory page");
     }
 
     @Test(priority = 1, description = "TC03 - Login user and add items to cart then proceed to checkout and complete purchase")
