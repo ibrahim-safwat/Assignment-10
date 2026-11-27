@@ -20,6 +20,8 @@ public class ChromeDriverFactory extends DriverAbstract {
         options.addArguments("--start-maximized");
         options.addArguments("--enable-logging");
         options.addArguments("--window-size=1920,1080");
+        options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
 
         // makes a new java folder and gives it the name "downloads" foldr and then turn it into a full pat, then store the full path inside the downloaddir string
         String downloadDir = new File("downloads").getAbsolutePath();
