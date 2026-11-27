@@ -1,6 +1,7 @@
 package pages;
 
 import driverfactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import java.util.List;
@@ -24,21 +25,26 @@ public class InventoryPage {
     }
 
     /***************************** methods ****************************/
-
+    @Step("get product name")
     public List<String> getProductNames() {
         System.out.println("getting product name ");
         return driver.element().getTextsOfElements(productName);
     }
 
+    @Step("get product prices")
     public List<String> getProductPrices() {
         System.out.println("getting product price ");
         return driver.element().getTextsOfElements(productPrices);
     }
 
+    @Step("get cart bade count")
+
     public List<String> getCartBadgeCount() {
         System.out.println("getting cart badge count ");
         return driver.element().getTextsOfElements(shoppingCartCount);
     }
+
+    @Step("go to cart button")
 
     public CartPage goToCartButton() {
         System.out.println("going to cart button");
@@ -46,18 +52,21 @@ public class InventoryPage {
         return new CartPage(driver);
     }
 
+    @Step("click add bike light product to cart button")
     public InventoryPage addBikeLightToCartButton() {
         System.out.println("adding bike light to cart button");
         driver.element().Click(addBikeLightToCartButton);
         return this;
     }
 
+    @Step("click add backpack to cart button")
     public InventoryPage addBackpackToCartButton() {
         System.out.println("adding backpack to cart button");
         driver.element().Click(addBackpackToCartButton);
         return this;
     }
 
+    @Step("click the sort by button")
     public InventoryPage clickSortByButton(String selectvalue) {
         System.out.println("clicking sort by button");
         driver.element().SelectfromdropdownbyValue(sortBybutton, selectvalue);
@@ -65,6 +74,7 @@ public class InventoryPage {
     }
 
     /***************************** Assertions ****************************/
+    @Step("assert inventory page")
     public InventoryPage assertInventoryPage() {
         System.out.println("asserting inventory page title");
         driver.hardassertions().element(inventoryPageTitle).IsDisplayed();

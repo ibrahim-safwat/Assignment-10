@@ -20,8 +20,10 @@ public class ChromeDriverFactory extends DriverAbstract {
         options.addArguments("--start-maximized");
         options.addArguments("--enable-logging");
         options.addArguments("--window-size=1920,1080");
-        options.addArguments("--headless");
+        options.addArguments("--headless=new");
         options.addArguments("--window-size=1920,1080");
+        options.addArguments("--disable-features=PasswordLeakDetection");
+
 
         // makes a new java folder and gives it the name "downloads" foldr and then turn it into a full pat, then store the full path inside the downloaddir string
         String downloadDir = new File("downloads").getAbsolutePath();
@@ -38,8 +40,13 @@ public class ChromeDriverFactory extends DriverAbstract {
         prefs.put("download.prompt_for_download", false);
         // permission for download files
         prefs.put("profile.default_content_setting_values.automatic_downloads", 1);
+
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("profile.password_manager_leak_detection", false);
         // here's the list of settings, assign them to chrome driver and use them when chrome is called
         options.setExperimentalOption("prefs", prefs);
+
 
         driver = new ChromeDriver(options);
         return driver;

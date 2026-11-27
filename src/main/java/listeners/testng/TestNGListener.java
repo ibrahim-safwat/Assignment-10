@@ -3,7 +3,9 @@ package listeners.testng;
 import org.testng.IExecutionListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utilities.AllureReportHelper;
 
+import static utilities.PropertiesManager.frameworkConfig;
 import static utilities.PropertiesManager.initializeProperties;
 
 public class TestNGListener implements IExecutionListener, ITestListener {
@@ -13,11 +15,19 @@ public class TestNGListener implements IExecutionListener, ITestListener {
 
         System.out.println("**************** Welcome to Selenium Framework ****************");
         initializeProperties();
+        if (frameworkConfig.getProperty("cleanAllureReportBeforeExecution").equals("true")) {
+            AllureReportHelper.cleanAllureReport();
+
+        }
     }
 
     @Override
     public void onExecutionFinish() {
         System.out.println("**************** End of Execution ****************");
+        if (frameworkConfig.getProperty("openReportAfterExecution").equals("true")) {
+            AllureReportHelper.openAllureReport();
+
+        }
     }
 
     @Override

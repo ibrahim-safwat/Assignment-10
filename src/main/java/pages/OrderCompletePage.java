@@ -1,6 +1,7 @@
 package pages;
 
 import driverfactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class OrderCompletePage {
@@ -15,6 +16,7 @@ public class OrderCompletePage {
     }
 
     /***************************** methods ****************************/
+    @Step("click the back to products button")
     public InventoryPage clickBackToProductsButton() {
         System.out.println("Clicking back to the product button");
         driver.element().Click(backToProductButton);
@@ -23,6 +25,7 @@ public class OrderCompletePage {
 
     /***************************** Assertions ****************************/
 
+    @Step("assert order complete page")
     public OrderCompletePage assertOrderCompletePage() {
         System.out.println("Order completed");
         driver.hardassertions().element(backToProductButton).IsDisplayed();

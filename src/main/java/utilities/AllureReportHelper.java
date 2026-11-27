@@ -19,8 +19,8 @@ public class AllureReportHelper {
 
     public static void openAllureReport() {
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("zsh", "-c", "allure serve target/allure-results");
-            processBuilder.start();
+            ProcessBuilder processBuilder = new ProcessBuilder("zsh", "-lc", "allure serve target/allure-results");
+            processBuilder.inheritIO().start();
             System.out.println("Allure Report opened successfully");
         } catch (IOException e) {
             System.out.println("Unable to open Allure Report");
