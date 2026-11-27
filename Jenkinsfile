@@ -24,7 +24,7 @@ node {
             if (isUnix()) {
                 sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean test"'
             } else {
-                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean test -Dtest="${params.TESTS}"/)
+                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean test/)
             }
         }
     }
