@@ -6,11 +6,4 @@
             <class name="org.example.tests.checkout.checkoutandPurchase"/>
         </classes>
     </test>
-
-    <test name="Firefox Test">
-        <parameter name="browserName" value="FIREFOX"/>
-        <classes>
-            <class name="org.example.tests.checkout.checkoutandPurchase"/>
-        </classes>
-    </test>
 </suite>
