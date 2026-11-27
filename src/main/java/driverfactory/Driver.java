@@ -15,10 +15,9 @@ import static utilities.PropertiesManager.frameworkConfig;
 
 public class Driver {
 
-    private ThreadLocal<WebDriver> driver;
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public Driver(String browserName) {
-        driver = new ThreadLocal<>();
         driver.set(getDriverFactory(browserName).StartDriver());
         System.out.println("Driver " + browserName + " is created");
         if (!frameworkConfig.getProperty("BaseUrl").isEmpty()) {
@@ -27,16 +26,13 @@ public class Driver {
     }
 
     public Driver() {
-        if (frameworkConfig == null) {
-            PropertiesManager.initializeProperties();
-        }
         String browserType = frameworkConfig.getProperty("BrowserType");
-
-        driver = new ThreadLocal<>();
-        driver.set(getDriverFactory(browserType).StartDriver());
+        WebDriver driver = getDriverFactory(browserType).StartDriver();
+        assert driver != null;
+        this.driver.set(driver);
         System.out.println("Starting the execution via " + browserType + " driver");
         if (!frameworkConfig.getProperty("BaseUrl").isEmpty()) {
-            driver.get().navigate().to(frameworkConfig.getProperty("BaseUrl"));
+            this.driver.get().navigate().to(frameworkConfig.getProperty("BaseUrl"));
         }
     }
 
